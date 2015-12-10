@@ -13,16 +13,21 @@ function ready(fn) {
 
 function init() {
 	console.log ('app js loaded');
-	boomsvgloader.load('icons/sprite.svg');
 	movie();
 }
 
 
 function movie() {
 
-
-var tl = new TimelineMax({repeat:10, repeatDelay:4, });
-tl.to([".scene"], 6, {scale: 1.1});
+	var tl = new TimelineMax({repeat:4, repeatDelay:0, });
+	tl.set('.scene1', {visibility: 'visible'}); 
+	tl.to([".scene1"], 3, {scale: 1.03});
+	tl.set('.scene3', {delay: -0.25, visibility: 'visible'});
+	tl.to([".scene3"], 4, {delay: -0.25, scale: 1.05});
+	tl.set('.scene4', {delay: -0.25, visibility: 'visible'});
+	tl.to([".scene4"], 4, {delay: -0.25, scale: 1.05});
+	tl.set('.scene8', {delay: -0.25, visibility: 'visible'});
+	tl.to([".scene8"], 3, {delay: -0.25, scale: 1.03});
 
 }
 
