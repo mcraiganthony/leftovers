@@ -13,13 +13,25 @@ function ready(fn) {
 
 function init() {
 	console.log ('app js loaded');
-	//movie();
+	intro();
+}
+
+
+function intro() {
+	TweenMax.to('.movie__intro__title',1,{opacity: 1});
+	TweenMax.to('.movie__intro__loader',1,{delay: 1,opacity: 1,yoyo: true, repeat:-1});
 }
 
 
 function movie() {
 
+	TweenMax.killTweensOf('.movie__intro__title');
+	TweenMax.killTweensOf('.movie__intro__loader');
+
 	var tl = new TimelineMax(/*{repeat:4, repeatDelay:0}*/);
+
+	tl.to([".movie__intro__loader"], 1, {y: 20, opacity: 0});
+	tl.to([".movie__intro__title"], 1, {y: -20, opacity: 0},"-=1");
 
 	tl.set('.scene1', {display: 'block',opacity: 0});
 	tl.to([".scene1"], 1, {opacity: 1, ease: Linear.easeNone });
@@ -41,6 +53,7 @@ function movie() {
 	tl.set('.scene5', {display: 'none'});
 	tl.to([".scene8"], 4, {scale: 1.05, ease: Linear.easeNone});
 	tl.to([".scene8"], 2, {opacity: 0, ease: Linear.easeNone});
+	tl.to([".movie__intro__title"], 1, {y: 0, opacity: 1});
 
 }
 
