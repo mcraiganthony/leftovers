@@ -23,6 +23,19 @@ function intro() {
 }
 
 
+var audioTrack = document.createElement('audio');
+audioTrack.setAttribute('src', 'audio/let-the-mystery-be.mp3');
+
+function playAudio() {
+	audioTrack.play();
+}
+
+function killAudio() {
+	audioTrack.pause();
+}
+
+
+
 function movie() {
 
 	TweenMax.killTweensOf('.movie__intro__title');
@@ -30,30 +43,40 @@ function movie() {
 
 	var tl = new TimelineMax(/*{repeat:4, repeatDelay:0}*/);
 
-	tl.to([".movie__intro__loader"], 1, {y: 20, opacity: 0});
-	tl.to([".movie__intro__title"], 1, {y: -20, opacity: 0},"-=1");
+	tl.call(playAudio);
+
+	tl.to(['.movie__intro__title','.movie__intro__loader'], 1, {opacity: 1});
+
+	tl.to(['.movie__intro__loader'], 3, {x: -80, opacity: 0, ease: Expo.easeInOut});
+	tl.to(['.movie__intro__title'], 3, {x: 80, opacity: 0, ease: Expo.easeInOut},'-=3');
 
 	tl.set('.scene1', {display: 'block',opacity: 0});
-	tl.to([".scene1"], 1, {opacity: 1, ease: Linear.easeNone });
-	tl.to([".scene1"], 4, {scale: 1.05, ease: Linear.easeNone },"-=1");
+	tl.to(['.scene1'], 1, {opacity: 1, ease: Linear.easeNone });
+	tl.to(['.scene1'], 4, {scale: 1.05, ease: Linear.easeNone },'-=1');
 
 	tl.set('.scene3', {display: 'block'});
 	tl.set('.scene1', {display: 'none'});
-	tl.to([".scene3"], 4, {scale: 1.05, ease: Linear.easeNone});
+	tl.to(['.scene3'], 4, {scale: 1.05, ease: Linear.easeNone});
 
 	tl.set('.scene4', {display: 'block'});
 	tl.set('.scene3', {display: 'none'});
-	tl.to([".scene4"], 4, {scale: 1.05, ease: Linear.easeNone});
+	tl.to(['.scene4'], 4, {scale: 1.05, ease: Linear.easeNone});
 
 	tl.set('.scene5', {display: 'block'});
 	tl.set('.scene4', {display: 'none'});
-	tl.to([".scene5"], 4, {scale: 1.05, ease: Linear.easeNone});
+	tl.to(['.scene5'], 4, {scale: 1.05, ease: Linear.easeNone});
 
 	tl.set('.scene8', {display: 'block'});
 	tl.set('.scene5', {display: 'none'});
-	tl.to([".scene8"], 4, {scale: 1.05, ease: Linear.easeNone});
-	tl.to([".scene8"], 2, {opacity: 0, ease: Linear.easeNone});
-	tl.to([".movie__intro__title"], 1, {y: 0, opacity: 1});
+	tl.to(['.scene8'], 4, {scale: 1.05, ease: Linear.easeNone});
+	tl.to(['.scene8'], 2, {opacity: 0, ease: Linear.easeNone});
+
+	tl.set(['.movie__intro__title'], {x: 0, y: -60});
+	tl.to(['.movie__intro__title'], 1, {y: 0, opacity: 1});
+
+	tl.to(audioTrack,5,{volume: 0, ease: Linear.easeNone});
+
+	tl.call(killAudio);
 
 }
 
@@ -80,9 +103,9 @@ function preloadImages(srcs) {
 }
 
 preloadImages([
-	"img/scene1.jpg","img/scene3.jpg","img/scene4.jpg",
-	"img/scene5.jpg","img/scene8.jpg","img/animated-ocean.gif",
-	"img/animated-sky.gif","img/animated-borealis.gif"
+	'img/scene1.jpg','img/scene3.jpg','img/scene4.jpg',
+	'img/scene5.jpg','img/scene8.jpg','img/animated-ocean.gif',
+	'img/animated-sky.gif','img/animated-borealis.gif'
 	]).then(function(imgs) {
     // all images are loaded now and in the array imgs
     //alert("loaded");
