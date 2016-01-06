@@ -25,6 +25,7 @@ function intro() {
 
 var audioTrack = document.createElement('audio');
 audioTrack.setAttribute('src', 'audio/let-the-mystery-be.mp3');
+audioTrack.setAttribute('type', 'audio/mpeg');
 
 function playAudio() {
 	audioTrack.play();
@@ -33,7 +34,6 @@ function playAudio() {
 function killAudio() {
 	audioTrack.pause();
 }
-
 
 
 function movie() {
