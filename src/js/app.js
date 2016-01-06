@@ -37,6 +37,7 @@ function movieReady() {
 var audioTrack = document.createElement('audio');
 audioTrack.setAttribute('src', 'audio/let-the-mystery-be.mp3');
 audioTrack.setAttribute('type', 'audio/mpeg');
+audioTrack.setAttribute('preload', 'none');
 
 function playAudio() {
 	audioTrack.play();
