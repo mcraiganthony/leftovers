@@ -22,6 +22,17 @@ function intro() {
 	TweenMax.to('.movie__intro__loader',1,{delay: 1,opacity: 1,yoyo: true, repeat:-1});
 }
 
+function movieReady() {
+	TweenMax.killTweensOf('.movie__intro__title');
+	TweenMax.killTweensOf('.movie__intro__loader');
+	document.getElementById('movie__intro__loader').innerHTML = "click to start";
+	TweenMax.to(['.movie__intro__title','.movie__intro__loader'], 1, {opacity: 1});
+	document.getElementById('movie__intro').onclick=function(){
+		playAudio();
+		movie();
+	}
+}
+
 
 var audioTrack = document.createElement('audio');
 audioTrack.setAttribute('src', 'audio/let-the-mystery-be.mp3');
@@ -38,14 +49,9 @@ function killAudio() {
 
 function movie() {
 
-	TweenMax.killTweensOf('.movie__intro__title');
-	TweenMax.killTweensOf('.movie__intro__loader');
+	
 
 	var tl = new TimelineMax(/*{repeat:4, repeatDelay:0}*/);
-
-	tl.call(playAudio);
-
-	tl.to(['.movie__intro__title','.movie__intro__loader'], 1, {opacity: 1});
 
 	tl.to(['.movie__intro__loader'], 3, {x: -80, opacity: 0, ease: Expo.easeInOut});
 	tl.to(['.movie__intro__title'], 3, {x: 80, opacity: 0, ease: Expo.easeInOut},'-=3');
@@ -109,7 +115,7 @@ preloadImages([
 	]).then(function(imgs) {
     // all images are loaded now and in the array imgs
     //alert("loaded");
-    movie();
+    movieReady();
 }, function(errImg) {
     // at least one image failed to load
     //alert("errored");
