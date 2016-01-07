@@ -57,7 +57,7 @@ function movie() {
 	tl.to(['.movie__intro__loader'], 3, {x: -80, opacity: 0, ease: Expo.easeInOut});
 	tl.to(['.movie__intro__title'], 3, {x: 80, opacity: 0, ease: Expo.easeInOut},'-=3');
 
-	/*tl.set('.scene1', {display: 'block',opacity: 0});
+	tl.set('.scene1', {display: 'block',opacity: 0});
 	tl.to(['.scene1'], 1, {opacity: 1, ease: Linear.easeNone });
 	tl.to(['.scene1'], 4, {scale: 1.05, ease: Linear.easeNone },'-=1');
 
@@ -71,14 +71,14 @@ function movie() {
 
 	tl.set('.scene5', {display: 'block'});
 	tl.set('.scene4', {display: 'none'});
-	tl.to(['.scene5'], 4, {scale: 1.05, ease: Linear.easeNone});*/
+	tl.to(['.scene5'], 4, {scale: 1.05, ease: Linear.easeNone});
 
 	tl.set('.scene6', {display: 'block'});
 	tl.set('.scene5', {display: 'none'});
-	tl.set('.scene6__figure', {opacity: 0});
+	tl.set(['.scene6__figure1','.scene6__figure2','.scene6__figure3'], {opacity: 0});
 	tl.to(['.scene6'], 4, {scale: 1.05, ease: Linear.easeNone});
-	tl.to(['.scene6__figure'], 1, {opacity: 1, ease: Linear.easeNone},'-=4');
-	tl.to(['.scene6__figure'], 4, {x: -20, ease: Linear.easeNone},'-=4');
+
+	tl.staggerTo(['.scene6__figure1','.scene6__figure2','.scene6__figure3'], 2, {opacity:1}, 1, "-=4");
 
 	tl.set('.scene8', {display: 'block'});
 	tl.set('.scene6', {display: 'none'});
@@ -118,7 +118,7 @@ function preloadImages(srcs) {
 
 preloadImages([
 	'img/scene1.jpg','img/scene3.jpg','img/scene4.jpg',
-	'img/scene5.jpg','img/scene6.jpg','img/scene8.jpg',
+	'img/scene5.jpg','img/scene6.jpg','img/scene6-figure.jpg','img/scene8.jpg',
 	'img/animated-ocean.gif','img/animated-sky.gif','img/animated-borealis.gif'
 	]).then(function(imgs) {
     // all images are loaded now and in the array imgs
