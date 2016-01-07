@@ -78,7 +78,7 @@ function movie() {
 	tl.set(['.scene6__figure1','.scene6__figure2','.scene6__figure3'], {opacity: 0});
 	tl.to(['.scene6'], 4, {scale: 1.05, ease: Linear.easeNone});
 
-	tl.staggerTo(['.scene6__figure1','.scene6__figure2','.scene6__figure3'], 2, {opacity:1}, 1, "-=4");
+	tl.staggerTo(['.scene6__figure1','.scene6__figure2','.scene6__figure3'], 2, {opacity: 1, ease: Linear.easeNone}, 1, "-=4");
 
 	tl.set('.scene8', {display: 'block'});
 	tl.set('.scene6', {display: 'none'});
